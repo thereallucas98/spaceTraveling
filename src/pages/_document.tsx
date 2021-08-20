@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
@@ -13,8 +11,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          {/* <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-          <link rel="shortcut icon" href="/favicon.svg" type="image/svg" /> */}
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+          <link rel="shortcut icon" href="/favicon.svg" type="image/svg" />
+
+          <title>spacetraveling</title>
         </Head>
         <body>
           <Main />

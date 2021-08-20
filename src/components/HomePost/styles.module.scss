@@ -1,0 +1,37 @@
+.container {
+  margin: 64px auto 0;
+  width: 100%;
+
+  & + div {
+    margin: 48px auto 0;
+  }
+}
+
+.headerTitle {
+  font: 700 28px 'Inter';
+  line-height: 32px;
+}
+
+.contentResume {
+  font: 400 18px 'Inter';
+  color: var(--info-text);
+  line-height: 28px;
+}
+
+.footerInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+
+  color: var(--info-text);
+
+  time,
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+  }
+}
