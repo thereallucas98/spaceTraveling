@@ -1,28 +1,44 @@
+import Link from 'next/link';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import styles from './styles.module.scss';
 
-export default function HomePost() {
+interface IHomePostProps {
+  slug: string;
+  first_publication_date: string | null;
+  data: {
+    title: string;
+    subtitle: string;
+    author: string;
+  };
+}
+
+export default function HomePost({
+  slug,
+  first_publication_date,
+  data,
+}: IHomePostProps) {
   return (
     <div className={styles.container}>
-      <header className={styles.headerTitle}>
-        <p>Como utilizar Hooks</p>
-      </header>
+      <Link href={`post/${slug}`}>
+        <header className={styles.headerTitle}>
+          <p>{data.title}</p>
+        </header>
+      </Link>
 
       <main className={styles.contentResume}>
-        <p>
-          Tudo sobre como criar a sua primeira aplicação utilizando Create React
-          App
-        </p>
+        <p>{data.subtitle}</p>
       </main>
 
       <footer className={styles.footerInfo}>
         <time>
           <FiCalendar />
-          15 Mar 2021
+          {first_publication_date}
         </time>
         <span>
           <FiUser />
-          Joseph Oliveira
+          {data.author}
         </span>
       </footer>
     </div>
