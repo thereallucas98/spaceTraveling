@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import styles from './styles.module.scss';
 

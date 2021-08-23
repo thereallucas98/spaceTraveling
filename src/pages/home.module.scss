@@ -1,0 +1,16 @@
+.footerHasButton {
+  margin-top: 64px;
+
+  button {
+    border: 0;
+    background-color: transparent;
+    font: 700 18px 'Inter';
+    color: var(--pink);
+
+    transition: filter .4s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+}

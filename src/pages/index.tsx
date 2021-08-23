@@ -35,7 +35,7 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination, preview = false }: HomeProps) {
-  // const [nextPage, setNextPage] = useState(postsPagination.next_page);
+  const [nextPage, setNextPage] = useState(postsPagination.next_page);
   const [posts, setPosts] = useState<Post[]>(
     postsPagination.results.map(post => {
       return {
@@ -50,6 +50,34 @@ export default function Home({ postsPagination, preview = false }: HomeProps) {
       };
     })
   );
+
+  function handleLoadMorePosts(): void {
+    fetch(nextPage).then(response => {
+      response.json().then(responsePrismic => {
+        setNextPage(responsePrismic.next_page);
+
+        const morePosts = responsePrismic.results.map(post => {
+          return {
+            uid: post.uid,
+            first_publication_date: format(
+              new Date(post.first_publication_date),
+              'dd MMM yyyy',
+              {
+                locale: ptBR,
+              }
+            ),
+            data: {
+              title: post.data.title,
+              subtitle: post.data.subtitle,
+              author: post.data.author,
+            },
+          };
+        });
+
+        setPosts([...posts, ...morePosts]);
+      });
+    });
+  }
 
   return (
     <>
@@ -73,9 +101,11 @@ export default function Home({ postsPagination, preview = false }: HomeProps) {
           ))}
         </main>
 
-        {postsPagination.next_page !== null && (
+        {nextPage !== null && (
           <footer className={styles.footerHasButton}>
-            <button type="button">Carregar mais posts</button>
+            <button type="button" onClick={handleLoadMorePosts}>
+              Carregar mais posts
+            </button>
           </footer>
         )}
       </div>
@@ -88,7 +118,7 @@ export const getStaticProps = async ({ preview = false }) => {
   const postsResponse = await prismic.query(
     [Prismic.Predicates.at('document.type', 'posts')],
     {
-      pageSize: 2,
+      pageSize: 1,
       orderings: '[document.last_publication_date desc]',
     }
   );
