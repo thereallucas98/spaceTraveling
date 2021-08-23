@@ -20,7 +20,10 @@ export default function HomePost({
   return (
     <div className={styles.container}>
       <Link href={`post/${slug}`}>
-        <header className={styles.headerTitle}>
+        <header
+          className={styles.headerTitle}
+          title="Ver mais detalhes sobre o artigo"
+        >
           <p>{data.title}</p>
         </header>
       </Link>

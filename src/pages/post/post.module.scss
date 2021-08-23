@@ -1,1 +1,71 @@
-// TODO
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font: 900 50px 'Inter';
+  }
+}
+
+.banner {
+  width:100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.post {
+  max-width: 720px;
+  margin: 4rem auto;
+}
+
+.postHeader {
+  h1 {
+    font: 900 48px 'Inter', sans-serif;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+
+    margin-top: 24px;
+
+    color: var(--info-text);
+
+    time,
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+    }
+  }
+}
+
+.postContent {
+  margin: 3rem auto 0;
+
+  strong {
+    font-size: 36px;
+    line-height: 1.5rem;
+  }
+
+  p {
+    color: var(--info-text);
+    margin-top: 1.5rem;
+    text-align: justify;
+  }
+
+  ul {
+    color: var(--info-text);
+    margin-top: 1.5rem;
+    text-align: justify;
+  }
+}
+

@@ -31,10 +31,10 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
-  preview: boolean;
+  // preview: boolean;
 }
 
-export default function Home({ postsPagination, preview = false }: HomeProps) {
+export default function Home({ postsPagination }: HomeProps) {
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
   const [posts, setPosts] = useState<Post[]>(
     postsPagination.results.map(post => {
@@ -113,7 +113,7 @@ export default function Home({ postsPagination, preview = false }: HomeProps) {
   );
 }
 
-export const getStaticProps = async ({ preview = false }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
     [Prismic.Predicates.at('document.type', 'posts')],
@@ -143,7 +143,7 @@ export const getStaticProps = async ({ preview = false }) => {
   return {
     props: {
       postsPagination,
-      preview,
+      // preview,
     },
     revalidate: 60 * 60 * 24, // 24 horas
   };
