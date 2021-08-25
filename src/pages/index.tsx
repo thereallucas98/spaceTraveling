@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import Head from 'next/head';
 import Prismic from '@prismicio/client';
 
@@ -31,10 +32,10 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
-  // preview: boolean;
+  preview: boolean;
 }
 
-export default function Home({ postsPagination }: HomeProps) {
+export default function Home({ postsPagination, preview }: HomeProps) {
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
   const [posts, setPosts] = useState<Post[]>(
     postsPagination.results.map(post => {
@@ -108,12 +109,20 @@ export default function Home({ postsPagination }: HomeProps) {
             </button>
           </footer>
         )}
+
+        {preview && (
+          <aside>
+            <Link href="/api/exit-preview">
+              <a className={commonStyles.preview}>Sair do modo Preview</a>
+            </Link>
+          </aside>
+        )}
       </div>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
     [Prismic.Predicates.at('document.type', 'posts')],
@@ -143,7 +152,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       postsPagination,
-      // preview,
+      preview,
     },
     revalidate: 60 * 60 * 24, // 24 horas
   };

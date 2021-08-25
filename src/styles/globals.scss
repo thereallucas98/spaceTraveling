@@ -5,7 +5,10 @@
 }
 
 :root {
-  --background: #1A1D23;
+  --heading: #F8F8F8;
+  --background:#1A1D23;
+  --body:#D7D7D7;
+  --border: #282C34;
   --white: #ffffff;
   --info-text: #BBB;
   --pink: #FF57B2;
@@ -22,7 +25,6 @@
     font-size: 87.5%;
   }
 }
-
 
 body {
   background: var(--background);

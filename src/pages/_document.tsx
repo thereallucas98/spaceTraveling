@@ -13,12 +13,15 @@ export default class MyDocument extends Document {
 
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
           <link rel="shortcut icon" href="/favicon.svg" type="image/svg" />
-
-          <title>spacetraveling</title>
         </Head>
         <body>
           <Main />
           <NextScript />
+          <script
+            async
+            defer
+            src="https://static.cdn.prismic.io/prismic.js?new=true&repo=ignite-challenge-zero-to-hero"
+          />
         </body>
       </Html>
     );
